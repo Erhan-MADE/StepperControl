@@ -48,14 +48,14 @@ void StepperControl::SetStepType(const StepType type)
 
 void StepperControl::Step(const uint32_t steps)
 {
-  uint32_t stepCount = 0;
-
   if(steps == 1)
   {
     this->Think();
     return;
   }
- 
+    
+  uint32_t stepCount = 0;
+
   while(stepCount < steps)
   {
     const unsigned long time = micros();
