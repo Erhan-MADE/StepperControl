@@ -138,7 +138,7 @@ void StepperControl::RemoveAllActions()
   _currentActionIndex = 0;
   _actionCount = 0;
   delete[] _stepperActions;
-  _stepperActions == nullptr;
+  _stepperActions = nullptr;
 }
 
 void StepperControl::ThinkAction()
