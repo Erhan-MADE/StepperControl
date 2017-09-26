@@ -9,6 +9,9 @@
 #define StepperControl_h
 
 #include "Arduino.h"
+class StepperAction;
+
+typedef void (StepperCallback)();   
 
 class StepperControl 
 {
@@ -36,7 +39,9 @@ class StepperControl
     void SetDirection(const StepDirection direction);
     void SetStepType(const StepType type);
     void Step(const uint32_t steps);
-    
+    void RemoveAllActions();
+    void StartAction();
+
     inline StepType GetCurrentStepType()
     {
       return _stepType;
@@ -58,9 +63,23 @@ class StepperControl
       return rotation * (_rotationSteps / (_stepType == WaveDrive ? 2L : 1L));
     }
 
-  private:
+    struct StepperAction
+    {
+    public:
+      StepType Type;
+      StepDirection Direction;
+      uint32_t Steps;
+      uint32_t StartDelay;
+      uint32_t EndDelay;
+      double Rpm;
+      StepperCallback* DidEndCallback;
+    };
+    void AddStepperAction(const StepperAction& action);
 
+  private:
+    ~StepperControl();
     void Think();
+    void ThinkAction();
     void ThinkWaveDrive();
     void ThinkFullStep();
     void ThinkHalfStep();
@@ -73,6 +92,9 @@ class StepperControl
     double _rpm;
     unsigned long _stepDelay;
     unsigned long _lastStepTime;
+    uint8_t _actionCount;
+    StepperAction* _stepperActions;
+    uint8_t _currentActionIndex;
 };
 
 #endif
