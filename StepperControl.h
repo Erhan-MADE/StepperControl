@@ -1,7 +1,7 @@
 
 /**
  * Library for 28byj-48 Stepper Motor
- *
+ * 
  * @author Erhan Yilgör
 */
 
