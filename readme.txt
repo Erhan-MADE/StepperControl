@@ -20,7 +20,7 @@ StepperControl:
 
 		#include <StepperControl.h>
 		
-		StepperControl control(4096, 8,9,10,11);
+		StepperControl control(StepperControl::DefaultStepCount, 8,9,10,11);
 
 		void setup()
 		{
@@ -32,8 +32,8 @@ StepperControl:
 	  	void loop()
 	  	{
 	  		// NOTE: initial Step count is always based on FullStep. WaveDrive will
-	  		// need only half of the steps for a full rotation you can just query 
-	  		// the controller to get right amount of steps for the specified rotation
+	  		// need only half of the steps for a full rotation, you can just query 
+	  		// the controller to get the right amount of steps for the specified rotation
 	 		const uint32_t steps = control.GetStepsFromDegrees(360);
 	  		control.Step(steps);
 

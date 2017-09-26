@@ -10,10 +10,11 @@
 
 #include "Arduino.h"
 
-
- class StepperControl 
+class StepperControl 
 {
   public:
+
+    static const uint32_t DefaultStepCount = 4096;
 
     enum StepDirection
     {
