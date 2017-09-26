@@ -22,7 +22,7 @@ StepperControl:
 		
 		StepperControl control(4096, 8,9,10,11);
 
-		void start()
+		void setup()
 		{
 		 	control.SetDirection(StepperControl::Backward);
 		  	control.SetRotationSpeed(2);
