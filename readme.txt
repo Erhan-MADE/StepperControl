@@ -14,7 +14,7 @@ StepperControl:
 		* Speed Control
 		
 
-	example:
+	Example:
 
 		#include <StepperControl.h>
 		
@@ -29,8 +29,9 @@ StepperControl:
 
 	  	void loop()
 	  	{
-	  		// NOTE: initial Step count is always based on FullStep. WaveDrive will need only half of the steps for a full rotation
-	  		// you can just query the controller to get right amount of steps for the specified rotation
+	  		// NOTE: initial Step count is always based on FullStep. WaveDrive will need 
+	  		// only half of the steps for a full rotation you can just query the
+	  		// controller to get right amount of steps for the specified rotation
 	 		const uint32_t steps = control.GetStepsFromDegrees(360);
 	  		control.Step(steps);
 
