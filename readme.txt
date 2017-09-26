@@ -12,7 +12,9 @@ StepperControl:
 
 		* Direction Control
 		* Speed Control
-		
+	
+	For a more generic stepper motor library please check the Arduino Stepper.h lib.
+	It handles stepper motors with 2/4/5 pins!
 
 	Example:
 
@@ -36,5 +38,5 @@ StepperControl:
 	  		control.Step(steps);
 
 	  		control.SetDirection(control.GetInvertedDirection());
-	  		delay(100);
+	  		delay(1000);
 	  	}
