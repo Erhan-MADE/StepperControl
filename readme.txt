@@ -17,4 +17,10 @@ StepperControl:
 	For a more generic stepper motor library please check the Arduino Stepper.h lib.
 	It handles stepper motors with 2/4/5 pins!
 
-	Includes two example sketches that can be accessed via File > Examples > StepperControl in the Arduino IDE after installation.
+	Includes two example sketches that can be accessed via File > Examples > StepperControl
+	in the Arduino IDE after installation.
+
+
+	Contributors
+
+		* per1234
