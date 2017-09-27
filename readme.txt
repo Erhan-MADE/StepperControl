@@ -30,3 +30,4 @@ StepperControl:
 
 		Append Action array method to reduce memory fragmentation.
 		Doxygen style comments
+		Update examples
