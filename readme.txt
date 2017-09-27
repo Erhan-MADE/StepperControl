@@ -24,3 +24,9 @@ StepperControl:
 	Contributors
 
 		* per1234
+
+
+	TODO
+
+		Append Action array method to reduce memory fragmentation.
+		Doxygen style comments
