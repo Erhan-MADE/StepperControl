@@ -9,8 +9,6 @@
 
 #include "Arduino.h"
 
-class StepperAction;
-
 typedef void (StepperCallback)();
 
 class StepperControl
@@ -108,9 +106,9 @@ private:
     double _rpm;
     unsigned long _stepDelay;
     unsigned long _lastStepTime;
-    uint8_t _actionCount;
     StepperAction* _stepperActions;
     uint8_t _currentActionIndex;
+    uint8_t _actionCount;
 };
 
 #endif

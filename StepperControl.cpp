@@ -7,6 +7,7 @@ const unsigned long kSecondToMicroSecond = 1000000L;
 
 StepperControl::StepperControl(const uint32_t rotationStepCount, const uint8_t pin1, const uint8_t pin2, const uint8_t pin3, const uint8_t pin4) :
 _rotationSteps(rotationStepCount),
+_pins{ pin1, pin2, pin3, pin4},
 _stepperActions(nullptr),
 _currentActionIndex(0),
 _direction(Forward),
@@ -16,16 +17,11 @@ _actionCount(0),
 _stepDelay(0),
 _steps(0),
 _rpm(0.0)
-{
-    _pins[0] = pin1;
-    _pins[1] = pin2;
-    _pins[2] = pin3;
-    _pins[3] = pin4;
-    
-    pinMode(pin1, OUTPUT);
-    pinMode(pin2, OUTPUT);
-    pinMode(pin3, OUTPUT);
-    pinMode(pin4, OUTPUT);
+{    
+    pinMode(_pins[0], OUTPUT);
+    pinMode(_pins[1], OUTPUT);
+    pinMode(_pins[2], OUTPUT);
+    pinMode(_pins[3], OUTPUT);
 }
 
 StepperControl::~StepperControl()
@@ -53,7 +49,7 @@ void StepperControl::AddStepperAction(const StepperAction& action)
     if(_actionCount == 255)
         return;
     
-    StepperAction* actions = new StepperAction[_actionCount+1];
+    StepperAction *const actions = new StepperAction[_actionCount+1];
     
     for(int i = 0; i < _actionCount; i++)
     {
