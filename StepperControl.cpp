@@ -44,6 +44,32 @@ void StepperControl::CopyActionValuesFromTo(const StepperAction& source, Stepper
     destination.DidEndCallback = source.DidEndCallback;
 }
 
+void StepperControl::AddStepperActionArray(const StepperAction actions[], const uint8_t count)
+{
+    if(_actionCount == 255 || (count + _actionCount) > 255)
+        return;
+    
+    const uint8_t newCount = _actionCount + count;
+    StepperAction *const newActions = new StepperAction[newCount];
+    
+    for(int i = 0; i < _actionCount; i++)
+    {
+        StepperControl::CopyActionValuesFromTo(_stepperActions[i], newActions[i]);
+    }
+    
+    for (int i = _actionCount, j = 0; i<newCount; i++, j++)
+    {
+        StepperControl::CopyActionValuesFromTo(actions[j], newActions[i]);
+    }
+    
+    _actionCount = newCount;
+    
+    if(_stepperActions != nullptr)
+        delete[] _stepperActions;
+    
+    _stepperActions = newActions;
+}
+
 void StepperControl::AddStepperAction(const StepperAction& action)
 {
     if(_actionCount == 255)
@@ -226,7 +252,7 @@ void StepperControl::ThinkWaveDrive()
         case 7 :
             digitalWrite(_pins[0], LOW);
             digitalWrite(_pins[1], LOW);
-            digitalWrite(_pins[2], HIGH);
+            digitalWrite(_pins[2], LOW);
             digitalWrite(_pins[3], HIGH);
             break;
     }

@@ -33,9 +33,9 @@ public:
     StepperControl(const uint32_t rotationStepCount, const uint8_t pin1, const uint8_t pin2, const uint8_t pin3, const uint8_t pin4);
     ~StepperControl();
     
-    void SetRotationSpeed(const double rpm);
     void SetFullRotationStepCount(const uint32_t rotationSteps);
     void SetDirection(const StepDirection direction);
+    void SetRotationSpeed(const double rpm);
     void SetStepType(const StepType type);
     void Step(const uint32_t steps);
     void RemoveAllActions();
@@ -89,6 +89,7 @@ public:
         StepperCallback* DidEndCallback;
     };
     void AddStepperAction(const StepperAction& action);
+    void AddStepperActionArray(const StepperAction actions[], const uint8_t count);
     static void CopyActionValuesFromTo(const StepperAction& source, StepperAction& destination);
     
 private:
